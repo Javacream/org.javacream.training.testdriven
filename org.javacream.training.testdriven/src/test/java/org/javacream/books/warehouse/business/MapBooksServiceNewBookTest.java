@@ -1,5 +1,6 @@
 package org.javacream.books.warehouse.business;
 
+import org.javacream.application.Context;
 import org.javacream.books.warehouse.business.MapBooksService;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -18,7 +19,7 @@ public class MapBooksServiceNewBookTest {
 
 	@BeforeClass
 	public static void testBooksService() {
-		booksService = new MapBooksService();
+		booksService = Context.getMapBooksService();
 	}
 
 	@Test

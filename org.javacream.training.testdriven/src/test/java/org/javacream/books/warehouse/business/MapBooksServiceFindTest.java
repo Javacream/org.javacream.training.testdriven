@@ -1,32 +1,42 @@
 package org.javacream.books.warehouse.business;
 
+import java.util.HashMap;
+
 import org.javacream.books.warehouse.Book;
-import org.javacream.books.warehouse.business.MapBooksService;
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 public class MapBooksServiceFindTest {
 
-	private static String isbn;
+	private static String ISBN = "ISBN1";
 
 	private static final String TITLE = "Title1";
 
-	private static MapBooksService booksService;
+	private Book book;
+	private MapBooksService booksService;
 
 	private String UNKNOWN_ISBN = "UNKNOWN ISBN";
 
 
-	@BeforeClass
-	public static void testBooksService() {
+	@Before
+	public void init() {
+		book = new Book();
+		book.setTitle(TITLE);
+		book.setIsbn(ISBN);
+		HashMap<String, Book> testdata = new HashMap<>();
+		testdata.put(ISBN, book);
+		
 		booksService = new MapBooksService();
-		isbn = booksService.newBook(TITLE);
+		booksService.setBooks(testdata);
+		booksService.setStoreService(new SimpleStoreService());
+		//booksService.newBook(TITLE);
 	}
 
 	@Test
 	public void testValidIsbnRetrievesBookWithExpectedTitle() {
 
-		Book book = booksService.findBookByIsbn(isbn);
+		Book book = booksService.findBookByIsbn(ISBN);
 		Assert.assertEquals("Title must be " + TITLE, TITLE, book.getTitle());
 	}
 	

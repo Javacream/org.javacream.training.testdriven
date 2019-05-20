@@ -12,6 +12,7 @@ public class CounterIsbnGeneratorNextIsbnTest {
 	@Before public void init(){
 		isbnGenerator = new CounterIsbnGenerator();
 		isbnGenerator.setSuffix(SUFFIX);
+		//isbnGenerator = Context.getCounterIsbnGenerator();
 	}
 
 	@Test
@@ -20,7 +21,7 @@ public class CounterIsbnGeneratorNextIsbnTest {
 		Assert.assertTrue("ISBN must have special format", isbn.indexOf("-") > 0);
 	}
 	@Test
-	public void testNextIsbnRetrievesNonNummIsbn() {
+	public void testNextIsbnRetrievesNonNullIsbn() {
 		String isbn = isbnGenerator.nextIsbn();
 		Assert.assertNotNull("generated ISBN must not be null!", isbn);
 	}

@@ -1,6 +1,5 @@
 package org.javacream.books.warehouse.business;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.javacream.books.warehouse.Book;
@@ -8,17 +7,29 @@ import org.javacream.books.warehouse.Book;
 
 public class MapBooksService{
 
-	private static Map<String, Book> books;
+	private Map<String, Book> books;
+
+	public void setBooks(Map<String, Book> books) {
+		this.books = books;
+	}
+
+	public void setIsbnGenerator(CounterIsbnGenerator isbnGenerator) {
+		this.isbnGenerator = isbnGenerator;
+	}
+
+	public void setStoreService(SimpleStoreService storeService) {
+		this.storeService = storeService;
+	}
 
 	private CounterIsbnGenerator isbnGenerator;
 
 	private SimpleStoreService storeService;
 
-	{
-		books = new HashMap<String, Book>();
-		isbnGenerator = new CounterIsbnGenerator();
-		storeService = new SimpleStoreService();
-	}
+//	{
+//		books = new HashMap<String, Book>();
+//		isbnGenerator = new CounterIsbnGenerator();
+//		storeService = new SimpleStoreService();
+//	}
 
 
 	public String newBook(String title) {
