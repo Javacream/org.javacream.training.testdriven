@@ -1,8 +1,10 @@
-package org.javacream.books.warehouse.business;
+package org.javacream.books.warehouse.api.operations;
 
 import java.util.HashMap;
 
-import org.javacream.books.warehouse.Book;
+import org.javacream.books.warehouse.api.Book;
+import org.javacream.books.warehouse.api.StoreService;
+import org.javacream.books.warehouse.business.MapBooksService;
 import org.javacream.util.testdriver.GenericDummy;
 import org.junit.Assert;
 import org.junit.Before;
@@ -49,6 +51,12 @@ public class MapBooksServiceFindUnitTest {
 	@Test(expected=IllegalArgumentException.class) 
 	public void testUnknownIsbnIsInvalid(){
 		booksService.findBookByIsbn(UNKNOWN_ISBN);
+	}
+	@Test
+	public void testValidIsbnRetrievesAvailableBook() {
+
+		Book book = booksService.findBookByIsbn(ISBN);
+		Assert.assertEquals("Book must be available", true, book.isAvailable());
 	}
 
 }

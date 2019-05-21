@@ -1,5 +1,6 @@
 package org.javacream.books.warehouse.business;
 
+import org.javacream.books.warehouse.api.IsbnGenerator;
 
 public class CounterIsbnGenerator implements IsbnGenerator{
 

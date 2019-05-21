@@ -1,9 +1,10 @@
-package org.javacream.books.warehouse.business;
+package org.javacream.books.warehouse.api.operations;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Properties;
 
+import org.javacream.books.warehouse.api.StoreService;
 import org.javacream.books.warehouse.business.PropertiesStoreService;
 import org.junit.Assert;
 import org.junit.Before;

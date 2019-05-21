@@ -2,13 +2,13 @@ package org.javacream.application;
 
 import java.util.HashMap;
 
-import org.javacream.books.warehouse.Book;
-import org.javacream.books.warehouse.business.BooksService;
+import org.javacream.books.warehouse.api.Book;
+import org.javacream.books.warehouse.api.BooksService;
+import org.javacream.books.warehouse.api.IsbnGenerator;
+import org.javacream.books.warehouse.api.StoreService;
 import org.javacream.books.warehouse.business.CounterIsbnGenerator;
-import org.javacream.books.warehouse.business.IsbnGenerator;
 import org.javacream.books.warehouse.business.MapBooksService;
 import org.javacream.books.warehouse.business.PropertiesStoreService;
-import org.javacream.books.warehouse.business.StoreService;
 
 public abstract class Context {
 
@@ -37,7 +37,6 @@ public abstract class Context {
 		mapBooksService.setBooks(books);
 		mapBooksService.setIsbnGenerator(counterIsbnGenerator);
 		mapBooksService.setStoreService(propertiesStoreService);
-		
 		counterIsbnGenerator.setSuffix("-de");
 	}
 }

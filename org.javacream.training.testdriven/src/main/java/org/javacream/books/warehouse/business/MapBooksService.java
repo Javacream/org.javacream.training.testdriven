@@ -2,7 +2,10 @@ package org.javacream.books.warehouse.business;
 
 import java.util.Map;
 
-import org.javacream.books.warehouse.Book;
+import org.javacream.books.warehouse.api.Book;
+import org.javacream.books.warehouse.api.BooksService;
+import org.javacream.books.warehouse.api.IsbnGenerator;
+import org.javacream.books.warehouse.api.StoreService;
 
 
 public class MapBooksService implements BooksService{
@@ -44,6 +47,7 @@ public class MapBooksService implements BooksService{
 			throw new IllegalArgumentException("title to short: " + title);
 		}
 		String isbn = isbnGenerator.nextIsbn();
+		//String isbn = "ISBN-" + Math.random();
 		Book book = new Book();
 		book.setTitle(title);
 		book.setIsbn(isbn);

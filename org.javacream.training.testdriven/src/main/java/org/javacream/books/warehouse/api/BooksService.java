@@ -1,6 +1,4 @@
-package org.javacream.books.warehouse.business;
-
-import org.javacream.books.warehouse.Book;
+package org.javacream.books.warehouse.api;
 
 public interface BooksService {
 

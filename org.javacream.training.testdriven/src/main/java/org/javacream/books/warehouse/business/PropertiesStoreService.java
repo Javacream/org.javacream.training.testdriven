@@ -3,6 +3,8 @@ package org.javacream.books.warehouse.business;
 import java.util.HashMap;
 import java.util.Properties;
 
+import org.javacream.books.warehouse.api.StoreService;
+
 public class PropertiesStoreService implements StoreService {
 
 	private HashMap<String, Properties> store;
