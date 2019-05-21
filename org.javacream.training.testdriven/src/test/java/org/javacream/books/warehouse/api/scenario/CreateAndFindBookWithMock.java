@@ -32,6 +32,8 @@ public class CreateAndFindBookWithMock {
 			Assert.assertEquals("ISBN-" + i, result.getIsbn());
 			if (i%2 == 0) {
 				Assert.assertTrue(result.isAvailable());
+			}else {
+				Assert.assertFalse(result.isAvailable());
 			}
 		}
 		

@@ -70,7 +70,8 @@ public class MapBooksService implements BooksService{
 		if (book == null){
 			throw new IllegalArgumentException("book not found");
 		}
-		book.setAvailable(storeService.getStock("Books", isbn) > 0);
+		int stock = storeService.getStock("Books", isbn);
+		book.setAvailable(stock > 0);
 		return book;
 	}
 	
