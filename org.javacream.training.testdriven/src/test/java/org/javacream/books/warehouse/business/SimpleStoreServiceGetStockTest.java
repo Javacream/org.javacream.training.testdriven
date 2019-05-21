@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Properties;
 
-import org.javacream.books.warehouse.business.SimpleStoreService;
+import org.javacream.books.warehouse.business.PropertiesStoreService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -12,7 +12,7 @@ import org.junit.Test;
 
 public class SimpleStoreServiceGetStockTest {
 
-	private SimpleStoreService simpleStoreService;
+	private StoreService simpleStoreService;
 	private static final String TEST_ISBN1 = "1-123-12345-1-TEST";
 	private static final Integer TEST_ISBN1_STOCK = 10;
 	private static final String TEST_ISBN2 = "2-123-12345-1-TEST";
@@ -42,7 +42,7 @@ public class SimpleStoreServiceGetStockTest {
 	}
 	@Before
 	public void setUp(){
-		simpleStoreService = new SimpleStoreService();
+		simpleStoreService = new PropertiesStoreService(CATEGORY);
 	}
 
 	//@AfterClass

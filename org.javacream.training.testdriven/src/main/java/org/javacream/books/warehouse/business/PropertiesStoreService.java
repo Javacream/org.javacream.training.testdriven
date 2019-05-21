@@ -3,13 +3,19 @@ package org.javacream.books.warehouse.business;
 import java.util.HashMap;
 import java.util.Properties;
 
-public class SimpleStoreService {
+public class PropertiesStoreService implements StoreService {
 
 	private HashMap<String, Properties> store;
 
-	{
+	public PropertiesStoreService(String... storeNames) {
 		store = new HashMap<String, Properties>();
-		store.put("books", PropertiesUtil.getProperties("books-store.properties"));
+		for (String storeName : storeNames) {
+			store.put(storeName, PropertiesUtil.getProperties(storeName + "-store.properties"));
+		}
+	}
+
+	public void setStore(HashMap<String, Properties> store) {
+		this.store = store;
 	}
 
 	public int getStock(String category, String id) {

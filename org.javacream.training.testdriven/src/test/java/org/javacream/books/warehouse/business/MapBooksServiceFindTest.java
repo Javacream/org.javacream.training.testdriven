@@ -29,7 +29,7 @@ public class MapBooksServiceFindTest {
 		
 		booksService = new MapBooksService();
 		booksService.setBooks(testdata);
-		booksService.setStoreService(new SimpleStoreService());
+		booksService.setStoreService(new PropertiesStoreService());
 		//booksService.newBook(TITLE);
 	}
 

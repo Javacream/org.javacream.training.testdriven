@@ -1,7 +1,6 @@
 package org.javacream.books.warehouse.business;
 
 import org.javacream.application.Context;
-import org.javacream.books.warehouse.business.MapBooksService;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -15,11 +14,11 @@ public class MapBooksServiceNewBookTest {
 	private static final String TITLE2 = "Title2";
 	private static final String TWO_LETTER_TITLE = "AB";
 
-	private static MapBooksService booksService;
+	private static BooksService booksService;
 
 	@BeforeClass
 	public static void testBooksService() {
-		booksService = Context.getMapBooksService();
+		booksService = Context.getBooksService();
 	}
 
 	@Test
