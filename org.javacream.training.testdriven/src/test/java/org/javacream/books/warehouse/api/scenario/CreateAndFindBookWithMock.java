@@ -22,7 +22,8 @@ public class CreateAndFindBookWithMock {
 		booksService.setBooks(new HashMap<>());
 		IsbnGenerator isbnGenerator = createMockForIsbnGenerator();
 		booksService.setIsbnGenerator(isbnGenerator);
-		booksService.setStoreService(createMockForStoreService());
+		StoreService storeService = createMockForStoreService();
+		booksService.setStoreService(storeService);
 		for (int i = 0; i < NUMBER_OF_BOOKS; i++) {
 			final String TITLE = "TITLE" + i;
 			String isbn = booksService.newBook(TITLE);
@@ -37,6 +38,10 @@ public class CreateAndFindBookWithMock {
 			}
 		}
 		
+		Mockito.verify(storeService).getStock("books", "ISBN-0");
+		Mockito.verify(storeService).getStock("books", "ISBN-1");
+		Mockito.verify(storeService).getStock("books", "ISBN-2");
+		
 	}
 
 	private IsbnGenerator createMockForIsbnGenerator() {
@@ -45,9 +50,9 @@ public class CreateAndFindBookWithMock {
 
 	private StoreService createMockForStoreService() {
 		StoreService storeService = Mockito.mock(StoreService.class);
-		Mockito.when(storeService.getStock("Books", "ISBN-0")).thenReturn(42);
-		Mockito.when(storeService.getStock("Books", "ISBN-1")).thenReturn(0);
-		Mockito.when(storeService.getStock("Books", "ISBN-2")).thenReturn(1);
+		Mockito.when(storeService.getStock("books", "ISBN-0")).thenReturn(42);
+		Mockito.when(storeService.getStock("books", "ISBN-1")).thenReturn(0);
+		Mockito.when(storeService.getStock("books", "ISBN-2")).thenReturn(1);
 		return storeService;
 
 	}
