@@ -1,6 +1,8 @@
 package org.javacream.books.warehouse.business;
 
-import org.javacream.application.Context;
+import java.util.HashMap;
+
+import org.javacream.books.warehouse.Book;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -18,7 +20,15 @@ public class MapBooksServiceNewBookTest {
 
 	@BeforeClass
 	public static void testBooksService() {
-		booksService = Context.getBooksService();
+		
+		MapBooksService mapBooksService = new MapBooksService();
+		CounterIsbnGenerator counterIsbnGenerator = new CounterIsbnGenerator();
+		HashMap<String, Book> testdata = new HashMap<>();
+
+		mapBooksService.setIsbnGenerator(counterIsbnGenerator);
+		mapBooksService.setBooks(testdata);
+		counterIsbnGenerator.setSuffix("-test");
+		booksService = mapBooksService;
 	}
 
 	@Test
