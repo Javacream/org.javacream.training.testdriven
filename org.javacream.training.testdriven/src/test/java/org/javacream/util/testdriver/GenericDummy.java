@@ -12,18 +12,23 @@ import java.lang.reflect.Proxy;
  *
  */
 public class GenericDummy implements InvocationHandler {
-
+	public static interface Defaults{
+		String STRING = "Hugo";
+		double DOUBLE = 47.11;
+		int INTEGER = 42;
+		boolean BOOLEAN = true;
+	}
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 		Class<?> returnType = method.getReturnType();
 		if (returnType == String.class) {
-			return "Hugo";
+			return Defaults.STRING;
 		} else if (returnType == Integer.class || returnType == int.class) {
-			return 42;
+			return Defaults.INTEGER;
 		} else if (returnType == Double.class || returnType == double.class) {
-			return 47.11;
+			return Defaults.DOUBLE;
 		} else if (returnType == Boolean.class || returnType == boolean.class) {
-			return true;
+			return Defaults.BOOLEAN;
 		} else {
 			try {
 				returnType.newInstance();
@@ -41,4 +46,5 @@ public class GenericDummy implements InvocationHandler {
 		Class<?>[] toImplement = { interfaceToImplement };
 		return (T) Proxy.newProxyInstance(cl, toImplement, dummy);
 	}
+	
 }

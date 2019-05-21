@@ -39,7 +39,7 @@ public class MapBooksServiceNewBookUnitTest {
 	@Test
 	public void testValidTitleGeneratesExpectedIsbn() {
 
-		Assert.assertEquals("Hugo", booksService.newBook(TITLE));
+		Assert.assertEquals(GenericDummy.Defaults.STRING, booksService.newBook(TITLE));
 	}
 
 	@Test(expected=IllegalArgumentException.class)
