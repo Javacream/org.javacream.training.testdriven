@@ -94,6 +94,31 @@ public class OrderServiceOrderTests {
 	}
 
 	@Test(expected = IllegalArgumentException.class)
+	public void customerNameShorterThan3Letters() {
+		OrderServiceCreator orderServiceCreator = () -> {
+			OrderServiceImpl orderServiceImpl = new OrderServiceImpl();
+			StoreService storeService = Mockito.mock(StoreService.class);
+			OrderIdGenerator orderIdGenerator = Mockito.mock(OrderIdGenerator.class);
+			BooksService booksService = Mockito.mock(BooksService.class);
+			CustomerService customerService = Mockito.mock(CustomerService.class);
+			InvoiceService invoiceService = Mockito.mock(InvoiceService.class);
+			Mockito.when(booksService.findBookByIsbn(Mockito.anyString())).thenReturn(new Book());
+			Mockito.when(customerService.isActive(Mockito.anyString())).thenReturn(true);
+			Mockito.when(storeService.getStock(Mockito.anyString(), Mockito.anyString())).thenReturn(42);
+			Mockito.when(orderIdGenerator.nextId()).thenReturn(0l);
+			orderServiceImpl.setOrderIdGenerator(orderIdGenerator);
+			orderServiceImpl.setStoreService(storeService);
+			orderServiceImpl.setBooksService(booksService);
+			orderServiceImpl.setCustomerService(customerService);
+			orderServiceImpl.setInvoiceService(invoiceService);
+			return orderServiceImpl;
+		};
+
+		OrderService orderService = orderServiceCreator.create();
+		orderService.order(ISBN, AMOUNT, "AB");
+	}
+
+	@Test(expected = IllegalArgumentException.class)
 	public void negativeAmount() {
 		OrderService orderService = simpleOrderService.create();
 		orderService.order(ISBN, NEGATIVE_AMOUNT, CUSTOMER);
@@ -115,22 +140,4 @@ public class OrderServiceOrderTests {
 
 	};
 
-	private OrderService createOrderServiceForValidIsbnAndCustomerCreatesOrder() {
-		OrderServiceImpl orderServiceImpl = new OrderServiceImpl();
-		StoreService storeService = Mockito.mock(StoreService.class);
-		OrderIdGenerator orderIdGenerator = Mockito.mock(OrderIdGenerator.class);
-		BooksService booksService = Mockito.mock(BooksService.class);
-		CustomerService customerService = Mockito.mock(CustomerService.class);
-		InvoiceService invoiceService = Mockito.mock(InvoiceService.class);
-		Mockito.when(booksService.findBookByIsbn(Mockito.anyString())).thenReturn(new Book());
-		Mockito.when(customerService.isActive(Mockito.anyString())).thenReturn(true);
-		Mockito.when(storeService.getStock(Mockito.anyString(), Mockito.anyString())).thenReturn(42);
-		Mockito.when(orderIdGenerator.nextId()).thenReturn(0l);
-		orderServiceImpl.setOrderIdGenerator(orderIdGenerator);
-		orderServiceImpl.setStoreService(storeService);
-		orderServiceImpl.setBooksService(booksService);
-		orderServiceImpl.setCustomerService(customerService);
-		orderServiceImpl.setInvoiceService(invoiceService);
-		return orderServiceImpl;
-	}
 }

@@ -39,7 +39,7 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public Order order(String isbn, int amount, String customerName) {
-		if (customerName == null || !customerService.isActive(customerName)) {
+		if (customerName == null || customerName.length() < 3 || !customerService.isActive(customerName)) {
 			throw new IllegalArgumentException("illegal customerName,  was " + customerName);
 		}
 		if (isbn == null) {
