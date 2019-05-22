@@ -1,4 +1,4 @@
-package org.javacream.util.test;
+package org.javacream.util.testdecorator.record_play;
 
 import java.beans.XMLDecoder;
 import java.io.FileInputStream;

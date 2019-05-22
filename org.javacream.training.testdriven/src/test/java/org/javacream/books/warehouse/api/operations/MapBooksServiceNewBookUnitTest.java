@@ -6,6 +6,8 @@ import org.javacream.books.warehouse.api.Book;
 import org.javacream.books.warehouse.api.BooksService;
 import org.javacream.books.warehouse.api.IsbnGenerator;
 import org.javacream.books.warehouse.business.MapBooksService;
+import org.javacream.util.testdecorator.TracingDecorator;
+import org.javacream.util.testdecorator.record_play.XmlRecordingDecorator;
 import org.javacream.util.testdriver.GenericDummy;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -22,10 +24,12 @@ public class MapBooksServiceNewBookUnitTest {
 	public static void testBooksService() {
 		
 		MapBooksService mapBooksService = new MapBooksService();
-		IsbnGenerator counterIsbnGenerator = GenericDummy.createDummy(IsbnGenerator.class);
+		IsbnGenerator isbnGenerator = GenericDummy.createDummy(IsbnGenerator.class);
+		isbnGenerator = TracingDecorator.createDecorator(isbnGenerator);
+		isbnGenerator = XmlRecordingDecorator.createDecorator(isbnGenerator, "c:/_training/invocations.xml");
 		HashMap<String, Book> testdata = new HashMap<>();
 
-		mapBooksService.setIsbnGenerator(counterIsbnGenerator);
+		mapBooksService.setIsbnGenerator(isbnGenerator);
 		mapBooksService.setBooks(testdata);
 		booksService = mapBooksService;
 	}

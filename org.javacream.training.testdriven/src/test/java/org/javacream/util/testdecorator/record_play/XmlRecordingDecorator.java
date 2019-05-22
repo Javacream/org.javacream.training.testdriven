@@ -1,4 +1,4 @@
-package org.javacream.util.test;
+package org.javacream.util.testdecorator.record_play;
 
 import java.beans.XMLEncoder;
 import java.io.FileOutputStream;
@@ -61,8 +61,6 @@ public class XmlRecordingDecorator implements InvocationHandler {
 	public Object invoke(Object proxy, Method method, Object[] params)
 			throws Throwable {
 		Invocation invocation = Invocation.create(method, params);
-//		invocation.setMethodName(method.getName());
-//		invocation.setParams(params);
 		try {
 			Object result = method.invoke(delegate, params);
 			invocation.setResult(result);
@@ -80,7 +78,7 @@ public class XmlRecordingDecorator implements InvocationHandler {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public static <T> T decorate(T toDecorate, String filename) {
+	public static <T> T createDecorator(T toDecorate, String filename) {
 		ClassLoader classLoader = XmlRecordingDecorator.class.getClassLoader();
 		Class[] interfaces = toDecorate.getClass().getInterfaces();
 		XmlRecordingDecorator decorator = new XmlRecordingDecorator(filename);

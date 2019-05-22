@@ -5,6 +5,7 @@ import java.util.HashMap;
 import org.javacream.books.warehouse.api.Book;
 import org.javacream.books.warehouse.api.StoreService;
 import org.javacream.books.warehouse.business.MapBooksService;
+import org.javacream.util.testdecorator.TracingDecorator;
 import org.javacream.util.testdriver.GenericDummy;
 import org.junit.Assert;
 import org.junit.Before;
@@ -32,7 +33,9 @@ public class MapBooksServiceFindUnitTest {
 		
 		booksService = new MapBooksService();
 		booksService.setBooks(testdata);
-		booksService.setStoreService(GenericDummy.createDummy(StoreService.class));
+		StoreService storeService = GenericDummy.createDummy(StoreService.class);
+		storeService = TracingDecorator.createDecorator(storeService);
+		booksService.setStoreService(storeService);
 		//booksService.newBook(TITLE);
 	}
 

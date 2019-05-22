@@ -1,4 +1,4 @@
-package org.javacream.util.test;
+package org.javacream.util.testdecorator.record_play;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;
