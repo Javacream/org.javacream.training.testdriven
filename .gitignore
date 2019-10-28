@@ -1,4 +1,4 @@
-target/
+classes/
 .settings/
 pom.xml.tag
 pom.xml.releaseBackup

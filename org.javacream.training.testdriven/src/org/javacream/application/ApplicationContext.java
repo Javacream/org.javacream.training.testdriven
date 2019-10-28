@@ -10,7 +10,7 @@ import org.javacream.books.warehouse.business.CounterIsbnGenerator;
 import org.javacream.books.warehouse.business.MapBooksService;
 import org.javacream.books.warehouse.business.PropertiesStoreService;
 
-public abstract class Context {
+public abstract class ApplicationContext {
 
 	private static MapBooksService mapBooksService;
 	private static CounterIsbnGenerator counterIsbnGenerator;
@@ -33,7 +33,7 @@ public abstract class Context {
 		propertiesStoreService = new PropertiesStoreService("books");
 		HashMap<String, Book> books = new HashMap<>();
 		
-		//Setzen der Abhängigkeiten
+		//Setzen der Abhï¿½ngigkeiten
 		mapBooksService.setBooks(books);
 		mapBooksService.setIsbnGenerator(counterIsbnGenerator);
 		mapBooksService.setStoreService(propertiesStoreService);
