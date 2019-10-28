@@ -10,6 +10,30 @@ import org.javacream.books.warehouse.api.StoreService;
 
 public class MapBooksService implements BooksService{
 
+	@Override
+	public void deleteBookByIsbn(String isbn) {
+		findBookByIsbn(isbn);
+		this.books.remove(isbn);
+	}
+
+	@Override
+	public void updateBook(String isbn, Map<String, Object> options) {
+		Book book = findBookByIsbn(isbn);
+		if (options == null || options.isEmpty()) {
+			return;
+		}
+		Double newPrice = (Double) options.get("price");
+		String newTitle = (String)options.get("title");
+		if (newPrice != null) {
+			book.setPrice(newPrice);
+		}
+		if (newTitle != null) {
+			book.setTitle(newTitle);
+		}
+		
+		
+	}
+
 	private Map<String, Book> books;
 
 	public void setBooks(Map<String, Book> books) {

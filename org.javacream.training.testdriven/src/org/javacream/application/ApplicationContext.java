@@ -12,31 +12,35 @@ import org.javacream.books.warehouse.business.PropertiesStoreService;
 
 public abstract class ApplicationContext {
 
-	private static MapBooksService mapBooksService;
-	private static CounterIsbnGenerator counterIsbnGenerator;
-	private static PropertiesStoreService propertiesStoreService;
-	public static BooksService getBooksService() {
-		return mapBooksService;
+	private static BooksService booksService;
+	private static IsbnGenerator isbnGenerator;
+	private static StoreService storeService;
+	public static BooksService booksService() {
+		return booksService;
 	}
-	public static IsbnGenerator getIsbnGenerator() {
-		return counterIsbnGenerator;
+	public static IsbnGenerator isbnGenerator() {
+		return isbnGenerator;
 	}
-	public static StoreService getStoreService() {
-		return propertiesStoreService;
+	public static StoreService storeService() {
+		return storeService;
 	}
 	
 	static {
 		
 		//Erzeugen der Fachobjekte
-		mapBooksService = new MapBooksService();
-		counterIsbnGenerator = new CounterIsbnGenerator();
-		propertiesStoreService = new PropertiesStoreService("books");
+		MapBooksService mapBooksService = new MapBooksService();
+		CounterIsbnGenerator counterIsbnGenerator = new CounterIsbnGenerator();
+		PropertiesStoreService propertiesStoreService = new PropertiesStoreService("books");
 		HashMap<String, Book> books = new HashMap<>();
 		
-		//Setzen der Abh�ngigkeiten
+		//Setzen der Abhängigkeiten
 		mapBooksService.setBooks(books);
 		mapBooksService.setIsbnGenerator(counterIsbnGenerator);
 		mapBooksService.setStoreService(propertiesStoreService);
 		counterIsbnGenerator.setSuffix("-de");
+		
+		booksService = mapBooksService;
+		isbnGenerator = counterIsbnGenerator;
+		storeService = propertiesStoreService;
 	}
 }

@@ -1,16 +1,12 @@
 package org.javacream.books.warehouse.api.operations;
 
-import java.util.HashMap;
-
-import org.javacream.books.warehouse.api.Book;
+import org.javacream.application.ApplicationContext;
 import org.javacream.books.warehouse.api.BooksService;
-import org.javacream.books.warehouse.business.CounterIsbnGenerator;
-import org.javacream.books.warehouse.business.MapBooksService;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class MapBooksServiceNewBookTest {
+public class BooksServiceNewBookTest {
 
 	private static String isbn1;
 	private static String isbn2;
@@ -23,15 +19,7 @@ public class MapBooksServiceNewBookTest {
 
 	@BeforeClass
 	public static void testBooksService() {
-		
-		MapBooksService mapBooksService = new MapBooksService();
-		CounterIsbnGenerator counterIsbnGenerator = new CounterIsbnGenerator();
-		HashMap<String, Book> testdata = new HashMap<>();
-
-		mapBooksService.setIsbnGenerator(counterIsbnGenerator);
-		mapBooksService.setBooks(testdata);
-		counterIsbnGenerator.setSuffix("-test");
-		booksService = mapBooksService;
+		booksService = ApplicationContext.booksService();
 	}
 
 	@Test
