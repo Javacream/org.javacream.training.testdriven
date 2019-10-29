@@ -3,9 +3,9 @@ package org.javacream.books.warehouse.business;
 import java.io.IOException;
 import java.util.Properties;
 
-public abstract class PropertiesUtil {
+public class PropertiesUtil {
 
-	public static Properties getProperties(String name) {
+	public Properties getProperties(String name) {
 		Properties properties = new Properties();
 		try {
 			properties.load(PropertiesUtil.class.getResourceAsStream(name));

@@ -31,11 +31,7 @@ public class BooksServiceFindTest {
 		Assert.assertEquals("Title must be " + TITLE, TITLE, book.getTitle());
 	}
 	
-	@Test(expected=IllegalArgumentException.class) 
-	public void testNullIsbnIsInvalid(){
-		booksService.newBook(null);
-	}
-	
+
 	@Test(expected=IllegalArgumentException.class) 
 	public void testUnknownIsbnIsInvalid(){
 		booksService.findBookByIsbn(UNKNOWN_ISBN);

@@ -9,6 +9,7 @@ import org.javacream.books.warehouse.api.StoreService;
 import org.javacream.books.warehouse.business.CounterIsbnGenerator;
 import org.javacream.books.warehouse.business.MapBooksService;
 import org.javacream.books.warehouse.business.PropertiesStoreService;
+import org.javacream.books.warehouse.business.PropertiesUtil;
 
 public abstract class ApplicationContext {
 
@@ -30,14 +31,18 @@ public abstract class ApplicationContext {
 		//Erzeugen der Fachobjekte
 		MapBooksService mapBooksService = new MapBooksService();
 		CounterIsbnGenerator counterIsbnGenerator = new CounterIsbnGenerator();
-		PropertiesStoreService propertiesStoreService = new PropertiesStoreService("books");
+		PropertiesStoreService propertiesStoreService = new PropertiesStoreService();
 		HashMap<String, Book> books = new HashMap<>();
-		
+		PropertiesUtil propertiesUtil = new PropertiesUtil();
 		//Setzen der Abhängigkeiten
 		mapBooksService.setBooks(books);
 		mapBooksService.setIsbnGenerator(counterIsbnGenerator);
 		mapBooksService.setStoreService(propertiesStoreService);
 		counterIsbnGenerator.setSuffix("-de");
+		propertiesStoreService.setPropertiesUtil(propertiesUtil);
+		
+		//Initialisierung
+		propertiesStoreService.initialize("books");
 		
 		booksService = mapBooksService;
 		isbnGenerator = counterIsbnGenerator;

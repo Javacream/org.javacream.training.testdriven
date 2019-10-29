@@ -31,8 +31,10 @@ public class MapBooksServiceFindTest {
 		
 		booksService = new MapBooksService();
 		booksService.setBooks(testdata);
-		booksService.setStoreService(new PropertiesStoreService("books"));
-		//booksService.newBook(TITLE);
+		PropertiesStoreService propertiesStoreService = new PropertiesStoreService();
+		propertiesStoreService.setPropertiesUtil(new PropertiesUtil());
+		propertiesStoreService.initialize("books");
+		booksService.setStoreService(propertiesStoreService);
 	}
 
 	@Test
