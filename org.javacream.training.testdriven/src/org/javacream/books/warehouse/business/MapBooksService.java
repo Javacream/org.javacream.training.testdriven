@@ -70,8 +70,8 @@ public class MapBooksService implements BooksService{
 		if (title.trim().length() < 3){
 			throw new IllegalArgumentException("title to short: " + title);
 		}
-		//String isbn = isbnGenerator.nextIsbn();
-		String isbn = "ISBN-" + Math.random() + "-is";
+		String isbn = isbnGenerator.nextIsbn();
+		//String isbn = "ISBN-" + Math.random() + "-is";
 		Book book = new Book();
 		book.setTitle(title);
 		book.setIsbn(isbn);

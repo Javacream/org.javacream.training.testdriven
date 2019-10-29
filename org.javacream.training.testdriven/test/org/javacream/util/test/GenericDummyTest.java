@@ -2,11 +2,8 @@ package org.javacream.util.test;
 
 import org.javacream.books.warehouse.api.IsbnGenerator;
 import org.javacream.books.warehouse.api.StoreService;
-import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.runners.MethodSorters;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class GenericDummyTest {
 
 	
