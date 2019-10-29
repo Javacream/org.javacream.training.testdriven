@@ -70,11 +70,12 @@ public class MapBooksService implements BooksService{
 		if (title.trim().length() < 3){
 			throw new IllegalArgumentException("title to short: " + title);
 		}
-		String isbn = isbnGenerator.nextIsbn();
-		//String isbn = "ISBN-" + Math.random();
+		//String isbn = isbnGenerator.nextIsbn();
+		String isbn = "ISBN-" + Math.random() + "-is";
 		Book book = new Book();
 		book.setTitle(title);
 		book.setIsbn(isbn);
+		//book.setAvailable(storeService.getStock("books", isbn) > 0);
 		books.put(isbn, book);
 //		book.setIsbn(isbnGenerator.nextIsbn());
 //		books.put(book.getIsbn(), book);
