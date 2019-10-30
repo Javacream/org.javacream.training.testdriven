@@ -10,6 +10,8 @@ import org.javacream.books.warehouse.business.CounterIsbnGenerator;
 import org.javacream.books.warehouse.business.MapBooksService;
 import org.javacream.books.warehouse.business.PropertiesStoreService;
 import org.javacream.books.warehouse.business.PropertiesUtil;
+import org.javacream.books.warehouse.decorators.CountingStoreService;
+import org.javacream.util.test.decorators.TracingDecorator;
 
 public abstract class ApplicationContext {
 
@@ -34,17 +36,22 @@ public abstract class ApplicationContext {
 		PropertiesStoreService propertiesStoreService = new PropertiesStoreService();
 		HashMap<String, Book> books = new HashMap<>();
 		PropertiesUtil propertiesUtil = new PropertiesUtil();
-		//Setzen der Abhängigkeiten
+
+		//Erzeugen der Decorators
+		CountingStoreService countingStoreService = new CountingStoreService();
+		//Setzen der Abhängigkeiten unter Berücksichtigung der Decorators
 		mapBooksService.setBooks(books);
 		mapBooksService.setIsbnGenerator(counterIsbnGenerator);
-		mapBooksService.setStoreService(propertiesStoreService);
+		countingStoreService.setDelegate(propertiesStoreService);
+		StoreService decoratedStoreService= TracingDecorator.decorate(countingStoreService, StoreService.class);
+		mapBooksService.setStoreService(decoratedStoreService);
 		counterIsbnGenerator.setSuffix("-de");
 		propertiesStoreService.setPropertiesUtil(propertiesUtil);
 		
 		//Initialisierung
 		propertiesStoreService.initialize("books");
 		
-		booksService = mapBooksService;
+		booksService = TracingDecorator.decorate(mapBooksService, BooksService.class);
 		isbnGenerator = counterIsbnGenerator;
 		storeService = propertiesStoreService;
 	}
