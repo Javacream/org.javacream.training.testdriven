@@ -56,7 +56,7 @@ public abstract class ApplicationContext {
 		propertiesStoreService.initialize("books");
 		
 		booksService = Decorator.decorate(mapBooksService, tracingDecoratorCallback);
-		booksService = Decorator.decorate(mapBooksService, profilingDecoratorCallbackForBooksService);
+		booksService = Decorator.decorate(booksService, profilingDecoratorCallbackForBooksService);
 		isbnGenerator = counterIsbnGenerator;
 		storeService = propertiesStoreService;
 	}
