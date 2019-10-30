@@ -1,6 +1,7 @@
 package org.javacream.application;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import org.javacream.books.warehouse.api.Book;
 import org.javacream.books.warehouse.api.BooksService;
@@ -15,6 +16,8 @@ import org.javacream.util.test.decorators.Decorator;
 import org.javacream.util.test.decorators.NetworkSimulatorDecoratorCallback;
 import org.javacream.util.test.decorators.ProfilingDecoratorCallback;
 import org.javacream.util.test.decorators.TracingDecoratorCallback;
+import org.javacream.util.test.decorators.record_play.Invocation;
+import org.javacream.util.test.decorators.record_play.XmlRecordingDecorator;
 
 public abstract class ApplicationContext {
 
@@ -39,7 +42,6 @@ public abstract class ApplicationContext {
 		PropertiesStoreService propertiesStoreService = new PropertiesStoreService();
 		HashMap<String, Book> books = new HashMap<>();
 		PropertiesUtil propertiesUtil = new PropertiesUtil();
-		
 		//Erzeugen der Decorators
 		CountingStoreService countingStoreService = new CountingStoreService();
 		TracingDecoratorCallback tracingDecoratorCallback = new TracingDecoratorCallback();
@@ -50,6 +52,7 @@ public abstract class ApplicationContext {
 		mapBooksService.setIsbnGenerator(counterIsbnGenerator);
 		countingStoreService.setDelegate(propertiesStoreService);
 		StoreService decoratedStoreService= Decorator.decorate(countingStoreService, tracingDecoratorCallback);
+		decoratedStoreService = XmlRecordingDecorator.decorate(decoratedStoreService, "store.xml");
 		mapBooksService.setStoreService(decoratedStoreService);
 		counterIsbnGenerator.setSuffix("-de");
 		propertiesStoreService.setPropertiesUtil(propertiesUtil);
@@ -61,7 +64,8 @@ public abstract class ApplicationContext {
 		booksService = Decorator.decorate(mapBooksService, tracingDecoratorCallback);
 		booksService = Decorator.decorate(booksService, profilingDecoratorCallbackForBooksService);
 		booksService = Decorator.decorate(booksService, networkSimulatorDecoratorCallback);
-		isbnGenerator = Decorator.decorate(counterIsbnGenerator, networkSimulatorDecoratorCallback);
+		//isbnGenerator = Decorator.decorate(counterIsbnGenerator, networkSimulatorDecoratorCallback);
+		isbnGenerator = counterIsbnGenerator;
 		storeService = propertiesStoreService;
 	}
 }

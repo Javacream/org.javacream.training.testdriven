@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import org.apache.commons.lang3.SerializationUtils;
 
-public class NetworkSimulatorDecoratorCallback extends BaseDecoratorCallback{
+public class NetworkSimulatorDecoratorCallback implements DecoratorCallback{
 
 	private long delay;
 	
