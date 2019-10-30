@@ -12,6 +12,7 @@ import org.javacream.books.warehouse.business.PropertiesStoreService;
 import org.javacream.books.warehouse.business.PropertiesUtil;
 import org.javacream.books.warehouse.decorators.CountingStoreService;
 import org.javacream.util.test.decorators.Decorator;
+import org.javacream.util.test.decorators.NetworkSimulatorDecoratorCallback;
 import org.javacream.util.test.decorators.ProfilingDecoratorCallback;
 import org.javacream.util.test.decorators.TracingDecoratorCallback;
 
@@ -43,6 +44,7 @@ public abstract class ApplicationContext {
 		CountingStoreService countingStoreService = new CountingStoreService();
 		TracingDecoratorCallback tracingDecoratorCallback = new TracingDecoratorCallback();
 		ProfilingDecoratorCallback profilingDecoratorCallbackForBooksService = new ProfilingDecoratorCallback();
+		NetworkSimulatorDecoratorCallback networkSimulatorDecoratorCallback = new NetworkSimulatorDecoratorCallback();
 		//Setzen der Abhängigkeiten unter Berücksichtigung der Decorators
 		mapBooksService.setBooks(books);
 		mapBooksService.setIsbnGenerator(counterIsbnGenerator);
@@ -51,13 +53,15 @@ public abstract class ApplicationContext {
 		mapBooksService.setStoreService(decoratedStoreService);
 		counterIsbnGenerator.setSuffix("-de");
 		propertiesStoreService.setPropertiesUtil(propertiesUtil);
+		networkSimulatorDecoratorCallback.setDelay(1l);
 		
 		//Initialisierung
 		propertiesStoreService.initialize("books");
 		
 		booksService = Decorator.decorate(mapBooksService, tracingDecoratorCallback);
 		booksService = Decorator.decorate(booksService, profilingDecoratorCallbackForBooksService);
-		isbnGenerator = counterIsbnGenerator;
+		booksService = Decorator.decorate(booksService, networkSimulatorDecoratorCallback);
+		isbnGenerator = Decorator.decorate(counterIsbnGenerator, networkSimulatorDecoratorCallback);
 		storeService = propertiesStoreService;
 	}
 }

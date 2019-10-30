@@ -1,7 +1,10 @@
 package org.javacream.books.warehouse.api;
 
+import java.io.Serializable;
 
-public class Book {
+public class Book implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	private String isbn;
 	private String title;
 	private boolean available;

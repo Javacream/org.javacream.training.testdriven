@@ -32,4 +32,9 @@ public class IsbnGeneratorNextIsbnTest {
 		Assert.assertFalse(isbn1.equals(isbn2));
 	}
 
+	@Test (timeout = 10) public void testIsbnGenerationPerformance() {
+		for (int i = 0; i < 10000; i++) {
+			isbnGenerator.nextIsbn();
+		}
+	}
 }

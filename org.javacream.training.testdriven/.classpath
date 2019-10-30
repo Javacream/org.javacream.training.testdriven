@@ -14,5 +14,6 @@
 	<classpathentry kind="lib" path="lib/mockito-core-2.27.0.jar"/>
 	<classpathentry kind="lib" path="lib/objenesis-2.6.jar"/>
 	<classpathentry kind="lib" path="lib/services.jar"/>
+	<classpathentry kind="lib" path="lib/commons-lang3-3.9.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>

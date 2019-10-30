@@ -1,18 +1,17 @@
 package org.javacream.util.test.decorators;
 
-public class TracingDecoratorCallback extends BaseDecoratorCallback{
+public abstract class BaseDecoratorCallback  implements DecoratorCallback{
 
+	@Override
 	public void before(String methodName, Object[] args) {
-		System.out.println("before " + methodName);
 	}
 
+	@Override
 	public void returning(String methodName, Object[] args, Object result) {
-		System.out.println("returning from " + methodName);
-
 	}
 
+	@Override
 	public void throwing(String methodName, Object[] args, Throwable t) {
-		System.out.println("throwing from " + methodName);
-
 	}
+
 }

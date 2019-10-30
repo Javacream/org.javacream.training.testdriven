@@ -1,6 +1,6 @@
 package org.javacream.util.test.decorators;
 
-public class ProfilingDecoratorCallback implements DecoratorCallback{
+public class ProfilingDecoratorCallback extends BaseDecoratorCallback{
 	private long start;
 	public void before(String methodName, Object[] args) {
 		start = System.currentTimeMillis();

@@ -17,15 +17,18 @@ public final class Decorator implements InvocationHandler {
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 		decoratorCallback.before(method.getName(), args);
+		args = decoratorCallback.prepareArgs(args);
 		try {
 			Object result = method.invoke(delegate, args);
 			decoratorCallback.returning(method.getName(), args, result);
+			result = decoratorCallback.prepareResult(result);
 			return result;
 		} catch (Throwable t) {
 			if (t instanceof InvocationTargetException) {
 				t = ((InvocationTargetException) t).getTargetException();
 			}
 			decoratorCallback.throwing(method.getName(), args, t);
+			t = decoratorCallback.prepareThrowable(t);
 			throw t;
 		}
 	}
