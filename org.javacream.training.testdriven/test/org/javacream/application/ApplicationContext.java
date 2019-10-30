@@ -1,7 +1,6 @@
 package org.javacream.application;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 
 import org.javacream.books.warehouse.api.Book;
 import org.javacream.books.warehouse.api.BooksService;
@@ -16,7 +15,6 @@ import org.javacream.util.test.decorators.Decorator;
 import org.javacream.util.test.decorators.NetworkSimulatorDecoratorCallback;
 import org.javacream.util.test.decorators.ProfilingDecoratorCallback;
 import org.javacream.util.test.decorators.TracingDecoratorCallback;
-import org.javacream.util.test.decorators.record_play.Invocation;
 import org.javacream.util.test.decorators.record_play.XmlRecordingDecorator;
 
 public abstract class ApplicationContext {
@@ -64,6 +62,7 @@ public abstract class ApplicationContext {
 		booksService = Decorator.decorate(mapBooksService, tracingDecoratorCallback);
 		booksService = Decorator.decorate(booksService, profilingDecoratorCallbackForBooksService);
 		booksService = Decorator.decorate(booksService, networkSimulatorDecoratorCallback);
+		booksService = XmlRecordingDecorator.decorate(booksService, "books.xml");
 		//isbnGenerator = Decorator.decorate(counterIsbnGenerator, networkSimulatorDecoratorCallback);
 		isbnGenerator = counterIsbnGenerator;
 		storeService = propertiesStoreService;

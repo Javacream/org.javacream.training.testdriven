@@ -20,7 +20,7 @@
      </array>
     </void>
     <void property="result">
-     <int>0</int>
+     <int>42</int>
     </void>
    </object>
   </void>

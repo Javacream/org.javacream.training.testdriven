@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_222" class="java.beans.XMLDecoder">
+ <object class="java.util.LinkedList">
+  <void method="add">
+   <object class="org.javacream.util.test.decorators.record_play.Invocation">
+    <void property="interfaceName">
+     <string>org.javacream.books.warehouse.api.BooksService</string>
+    </void>
+    <void property="methodName">
+     <string>newBook</string>
+    </void>
+    <void property="params">
+     <array class="java.lang.Object" length="1">
+      <void index="0">
+       <string>TESTING</string>
+      </void>
+     </array>
+    </void>
+    <void property="result">
+     <string>0-123-12345-1-de</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="org.javacream.util.test.decorators.record_play.Invocation">
+    <void property="interfaceName">
+     <string>org.javacream.books.warehouse.api.BooksService</string>
+    </void>
+    <void property="methodName">
+     <string>findBookByIsbn</string>
+    </void>
+    <void property="params">
+     <array class="java.lang.Object" length="1">
+      <void index="0">
+       <string>0-123-12345-1-de</string>
+      </void>
+     </array>
+    </void>
+    <void property="result">
+     <object class="org.javacream.books.warehouse.api.Book">
+      <void property="isbn">
+       <string>0-123-12345-1-de</string>
+      </void>
+      <void property="title">
+       <string>TESTING</string>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="org.javacream.util.test.decorators.record_play.Invocation">
+    <void property="interfaceName">
+     <string>org.javacream.books.warehouse.api.BooksService</string>
+    </void>
+    <void property="methodName">
+     <string>findBookByIsbn</string>
+    </void>
+    <void property="params">
+     <array class="java.lang.Object" length="1">
+      <void index="0">
+       <string>##ISBN##</string>
+      </void>
+     </array>
+    </void>
+    <void property="throwable">
+     <object class="java.lang.IllegalArgumentException">
+      <void property="stackTrace">
+       <array class="java.lang.StackTraceElement" length="51"/>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="org.javacream.util.test.decorators.record_play.Invocation">
+    <void property="interfaceName">
+     <string>org.javacream.books.warehouse.api.BooksService</string>
+    </void>
+    <void property="methodName">
+     <string>updateBook</string>
+    </void>
+    <void property="params">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>0-123-12345-1-de</string>
+      </void>
+      <void index="1">
+       <object class="java.util.HashMap">
+        <void method="put">
+         <string>price</string>
+         <double>9.99</double>
+        </void>
+       </object>
+      </void>
+     </array>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="org.javacream.util.test.decorators.record_play.Invocation">
+    <void property="interfaceName">
+     <string>org.javacream.books.warehouse.api.BooksService</string>
+    </void>
+    <void property="methodName">
+     <string>findBookByIsbn</string>
+    </void>
+    <void property="params">
+     <array class="java.lang.Object" length="1">
+      <void index="0">
+       <string>0-123-12345-1-de</string>
+      </void>
+     </array>
+    </void>
+    <void property="result">
+     <object class="org.javacream.books.warehouse.api.Book">
+      <void property="isbn">
+       <string>0-123-12345-1-de</string>
+      </void>
+      <void property="price">
+       <double>9.99</double>
+      </void>
+      <void property="title">
+       <string>TESTING</string>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="org.javacream.util.test.decorators.record_play.Invocation">
+    <void property="interfaceName">
+     <string>org.javacream.books.warehouse.api.BooksService</string>
+    </void>
+    <void property="methodName">
+     <string>deleteBookByIsbn</string>
+    </void>
+    <void property="params">
+     <array class="java.lang.Object" length="1">
+      <void index="0">
+       <string>0-123-12345-1-de</string>
+      </void>
+     </array>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="org.javacream.util.test.decorators.record_play.Invocation">
+    <void property="interfaceName">
+     <string>org.javacream.books.warehouse.api.BooksService</string>
+    </void>
+    <void property="methodName">
+     <string>deleteBookByIsbn</string>
+    </void>
+    <void property="params">
+     <array class="java.lang.Object" length="1">
+      <void index="0">
+       <string>0-123-12345-1-de</string>
+      </void>
+     </array>
+    </void>
+    <void property="throwable">
+     <object class="java.lang.IllegalArgumentException">
+      <void property="stackTrace">
+       <array class="java.lang.StackTraceElement" length="52"/>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>
