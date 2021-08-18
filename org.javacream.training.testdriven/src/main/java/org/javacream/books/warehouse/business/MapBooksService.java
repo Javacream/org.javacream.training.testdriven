@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.javacream.books.warehouse.Book;
+import org.javacream.test.SpecifiedBy;
 
 
 public class MapBooksService{
@@ -52,6 +53,17 @@ public class MapBooksService{
 		}
 		book.setAvailable(storeService.getStock("Books", isbn) > 0);
 		return book;
+	}
+	
+	@SpecifiedBy(url="https://github.com/Javacream/org.javacream.training.testdriven/blob/integrata_18.8.2021/specs/l%C3%B6scheBuch.txt")
+	public void deleteBookByIsbn(String isbn) {
+		if (isbn == null){
+			throw new IllegalArgumentException("isbn was null");
+		}
+		Book book = books.remove(isbn);
+		if (book == null){
+			throw new IllegalArgumentException("Kein Buch zu ISBN gefunden");
+		}
 	}
 	
 	
