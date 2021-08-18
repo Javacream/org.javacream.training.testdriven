@@ -65,7 +65,19 @@ public class MapBooksService{
 			throw new IllegalArgumentException("Kein Buch zu ISBN gefunden");
 		}
 	}
-	
-	
-
+	@SpecifiedBy(url="https://raw.githubusercontent.com/Javacream/org.javacream.training.testdriven/integrata_18.8.2021/specs/updateBook.jpg")
+	public void updateBook(String isbn, Map<String, Object> options) {
+		if (options == null || options.isEmpty()) {
+			return;
+		}
+		Book book = findBookByIsbn(isbn);
+		Double newPrice = (Double)options.get("price");
+		String newTitle = (String)options.get("title");
+		if (newPrice != null) {
+			book.setPrice(newPrice);
+		}
+		if (newTitle != null) {
+			book.setTitle(newTitle);
+		}
+	}
 }
