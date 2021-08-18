@@ -1,0 +1,3 @@
+Name: deleteBookByIsbn
+Parameter: ISBN, nicht null
+Rückgabe: Erfolgreiches löschen, "OK", sonst Fehler "Kein Buch zu ISBN gefunden
