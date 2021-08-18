@@ -12,8 +12,16 @@ public class MapBooksServiceNewBookIntegrationTest {
 	@Before public void init() {
 		mapBooksService = new MapBooksService();
 	}
-	@Test public void bookIsGenerated() {
+	
+	@Test public void anNonEmptyCreatesIsbn() {
 		String isbn = mapBooksService.newBook("NEW");
 		Assert.assertNotNull(isbn);
+	}
+
+	@Test(expected=IllegalArgumentException.class) public void nullTitleThrowsIllegalArgument() {
+		mapBooksService.newBook(null);
+	}
+	@Test(expected=IllegalArgumentException.class) public void emptyTitleThrowsIllegalArgument() {
+		mapBooksService.newBook("");
 	}
 }
