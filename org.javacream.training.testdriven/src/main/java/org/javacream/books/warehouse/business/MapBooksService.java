@@ -20,7 +20,10 @@ public class MapBooksService{
 		storeService = new SimpleStoreService();
 	}
 
-
+	static void setBooks(Map<String, Book> books){
+		MapBooksService.books = books;
+	}
+	
 	public String newBook(String title) {
 		if (title == null){
 			throw new IllegalArgumentException("title was null");

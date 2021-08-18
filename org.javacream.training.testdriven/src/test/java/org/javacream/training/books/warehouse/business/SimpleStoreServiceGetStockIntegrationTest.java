@@ -14,9 +14,21 @@ public class SimpleStoreServiceGetStockIntegrationTest {
 		simpleStoreService = new SimpleStoreService();
 	}
 	@Test
-	public void StockIsRetrieved() {
+	public void categoryBookAndTestIsbnGetsStock45() {
 		final int EXPECTED_STOCK = 45;
 		int stock = simpleStoreService.getStock("books", "TEST-ISBN");
+		Assert.assertEquals(EXPECTED_STOCK, stock);
+	}
+	@Test
+	public void unknownCategoryGetsStock0() {
+		final int EXPECTED_STOCK = 0;
+		int stock = simpleStoreService.getStock("%?zzz$%", "TEST-ISBN");
+		Assert.assertEquals(EXPECTED_STOCK, stock);
+	}
+	@Test
+	public void unknownIsbnGetsStock0() {
+		final int EXPECTED_STOCK = 0;
+		int stock = simpleStoreService.getStock("books", "&%");
 		Assert.assertEquals(EXPECTED_STOCK, stock);
 	}
 }

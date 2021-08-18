@@ -13,7 +13,7 @@ public class MapBooksServiceNewBookIntegrationTest {
 		mapBooksService = new MapBooksService();
 	}
 	
-	@Test public void anNonEmptyCreatesIsbn() {
+	@Test public void anNonEmptyTitleCreatesIsbn() {
 		String isbn = mapBooksService.newBook("NEW");
 		Assert.assertNotNull(isbn);
 	}
