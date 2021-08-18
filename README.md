@@ -8,11 +8,11 @@
   * Deskmate-Link: https://integrata-cegos.deskmate.me/
     * Vorsicht: Die Rechner nie herunterfahren! Sonst werden diese komplett neu aufgesetzt!
     * Deskmate-User                   Pwd    Windows-User
-    * tn04raum01@integrata-cegos.de 33082_tn04 administrator
-    * tn05raum01@integrata-cegos.de 33082_tn05 administrator
-    * tn06raum01@integrata-cegos.de 33082_tn06 administrator
-    * tn07raum01@integrata-cegos.de 33082_tn07 administrator
-    * tn08raum01@integrata-cegos.de 33082_tn08 administrator
+    * tn04.raum01@integrata-cegos.de 33082_tn04 administrator
+    * tn05.raum01@integrata-cegos.de 33082_tn05 administrator
+    * tn06.raum01@integrata-cegos.de 33082_tn06 administrator
+    * tn07.raum01@integrata-cegos.de 33082_tn07 administrator
+    * tn08.raum01@integrata-cegos.de 33082_tn08 administrator
 
 * Seminarzeiten
   * 12 Unterrichtseinheiten mit jeweils 90 Minuten
