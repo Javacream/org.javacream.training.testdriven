@@ -1,6 +1,7 @@
 package org.javacream.training.books.warehouse.business;
 
 import org.javacream.books.warehouse.api.Book;
+import org.javacream.books.warehouse.api.BooksService;
 import org.javacream.books.warehouse.impl.MapBooksService;
 import org.junit.Assert;
 import org.junit.Before;
@@ -8,7 +9,7 @@ import org.junit.Test;
 
 public class MapBooksServiceFindBookByIsbnIntegrationTest {
 
-	private MapBooksService mapBooksService;
+	private BooksService mapBooksService;
 	private String VALID_ISBN = "";
 	private String INVALID_ISBN = "$%$&$";
 	private String TITLE = "Java";

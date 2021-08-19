@@ -1,5 +1,6 @@
 package org.javacream.training.books.warehouse.business;
 
+import org.javacream.books.warehouse.api.BooksService;
 import org.javacream.books.warehouse.impl.MapBooksService;
 import org.junit.Assert;
 import org.junit.Before;
@@ -7,7 +8,7 @@ import org.junit.Test;
 
 public class MapBooksServiceNewBookIntegrationTest {
 
-	private MapBooksService mapBooksService;
+	private BooksService mapBooksService;
 
 	@Before public void init() {
 		mapBooksService = new MapBooksService();

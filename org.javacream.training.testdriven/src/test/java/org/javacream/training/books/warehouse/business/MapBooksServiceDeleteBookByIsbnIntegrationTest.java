@@ -1,5 +1,6 @@
 package org.javacream.training.books.warehouse.business;
 
+import org.javacream.books.warehouse.api.BooksService;
 import org.javacream.books.warehouse.impl.MapBooksService;
 import org.javacream.test.SpecifiedBy;
 import org.junit.Before;
@@ -8,7 +9,7 @@ import org.junit.Test;
 @SpecifiedBy(url="https://github.com/Javacream/org.javacream.training.testdriven/blob/integrata_18.8.2021/specs/l%C3%B6scheBuch.txt")
 public class MapBooksServiceDeleteBookByIsbnIntegrationTest {
 
-	private MapBooksService mapBooksService;
+	private BooksService mapBooksService;
 	private String VALID_ISBN = "";
 	private String INVALID_ISBN = "$%$&$";
 	private String TITLE = "Java";
