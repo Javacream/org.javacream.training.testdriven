@@ -1,6 +1,8 @@
 package org.javacream;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.javacream.books.warehouse.api.Book;
 import org.javacream.books.warehouse.api.BooksService;
@@ -11,8 +13,8 @@ import org.javacream.store.impl.SimpleStoreService;
 
 public class ApplicationContext {
 
-	private static MapBooksService booksService;
-	private static SimpleStoreService storeService;
+	private static BooksService booksService;
+	private static StoreService storeService;
 	public static BooksService booksService() {
 		return booksService;
 	}
@@ -22,18 +24,23 @@ public class ApplicationContext {
 	}
 
 	static {
-		booksService = new MapBooksService();
+		MapBooksService mapBooksService = new MapBooksService();
 		HashMap<String, Book> books = new HashMap<>();
 		CounterIsbnGenerator counterIsbnGenerator = new CounterIsbnGenerator();
-		storeService = new SimpleStoreService();
+		SimpleStoreService simpleStoreService = new SimpleStoreService();
+		List<String> categories = new ArrayList<>();
+		categories.add("books");
 		
-		booksService.setBooks(books);
-		booksService.setIsbnGenerator(counterIsbnGenerator);
-		booksService.setStoreService(storeService);
+		mapBooksService.setBooks(books);
+		mapBooksService.setIsbnGenerator(counterIsbnGenerator);
+		mapBooksService.setStoreService(simpleStoreService);
 		
+		simpleStoreService .setCategories(categories);
+		simpleStoreService .init();
 		counterIsbnGenerator.setSuffix("-de");
+		
+		booksService = mapBooksService;
+		storeService = simpleStoreService;
 	}
-	
-	
 	
 }

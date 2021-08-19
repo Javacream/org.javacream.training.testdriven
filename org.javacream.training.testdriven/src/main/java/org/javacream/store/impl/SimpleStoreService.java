@@ -1,6 +1,7 @@
 package org.javacream.store.impl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Properties;
 
 import org.javacream.store.api.StoreService;
@@ -8,10 +9,15 @@ import org.javacream.store.api.StoreService;
 public class SimpleStoreService implements StoreService {
 
 	private HashMap<String, Properties> store;
+	private List<String> categories;
+	public void setCategories(List<String> categories) {
+		this.categories = categories;
+	}
 
-	{
+	public void init(){
 		store = new HashMap<String, Properties>();
-		store.put("books", PropertiesUtil.getProperties("books-store.properties"));
+		categories.forEach(category -> store.put(category, PropertiesUtil.getProperties(category + "-store.properties")));
+		
 	}
 
 	@Override
