@@ -9,7 +9,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class MapBooksServiceFindBookByIsbnUnitTest {
+public class MapBooksServiceFindBookByIsbnUnitTestWithStub {
 
 	private MapBooksService booksService;
 	private String VALID_ISBN = "";
