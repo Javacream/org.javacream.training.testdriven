@@ -1,0 +1,7 @@
+Der StoreService bietet die Möglichkeit, eine Bestandsabfrage in einer Lagerverwaltung durchzuführen. 
+
+Dazu dient die Operation getStock mit den beiden Parametern "category" und "itemId".
+
+Der Rückgabewert der Operation ist die Anzahl der im Bestand gefundenen Items.
+
+Bei nicht bekannter Kombination aus category und itemId wird der Wert "0" geliefert.
