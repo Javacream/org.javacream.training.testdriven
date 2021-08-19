@@ -12,13 +12,18 @@ public class SimpleStoreService implements StoreService {
 
 	private HashMap<String, Properties> store;
 	private List<String> categories;
+	private PropertiesUtil propertiesUtil;
+	public void setPropertiesUtil(PropertiesUtil propertiesUtil) {
+		this.propertiesUtil = propertiesUtil;
+	}
+
 	public void setCategories(List<String> categories) {
 		this.categories = categories;
 	}
 
 	public void init(){
 		store = new HashMap<String, Properties>();
-		categories.forEach(category -> store.put(category, PropertiesUtil.getProperties(category + "-store.properties")));
+		categories.forEach(category -> store.put(category, propertiesUtil.getProperties(category + "-store.properties")));
 		
 	}
 

@@ -1,4 +1,4 @@
-package org.javacream.training.books.warehouse.api;
+package org.javacream.training.books.warehouse.api.scenario;
 
 import org.javacream.ApplicationContext;
 import org.javacream.books.warehouse.api.Book;

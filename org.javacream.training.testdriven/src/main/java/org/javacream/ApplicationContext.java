@@ -9,6 +9,7 @@ import org.javacream.books.warehouse.api.BooksService;
 import org.javacream.books.warehouse.impl.CounterIsbnGenerator;
 import org.javacream.books.warehouse.impl.MapBooksService;
 import org.javacream.store.api.StoreService;
+import org.javacream.store.impl.PropertiesUtil;
 import org.javacream.store.impl.SimpleStoreService;
 
 public class ApplicationContext {
@@ -28,6 +29,7 @@ public class ApplicationContext {
 		HashMap<String, Book> books = new HashMap<>();
 		CounterIsbnGenerator counterIsbnGenerator = new CounterIsbnGenerator();
 		SimpleStoreService simpleStoreService = new SimpleStoreService();
+		simpleStoreService.setPropertiesUtil(new PropertiesUtil());
 		List<String> categories = new ArrayList<>();
 		categories.add("books");
 		
