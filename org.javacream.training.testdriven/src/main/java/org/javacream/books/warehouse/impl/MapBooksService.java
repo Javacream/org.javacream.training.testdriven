@@ -14,13 +14,15 @@ public class MapBooksService implements BooksService{
 
 	private CounterIsbnGenerator isbnGenerator;
 
+	public CounterIsbnGenerator getIsbnGenerator() {
+		return isbnGenerator;
+	}
+
+	public SimpleStoreService getStoreService() {
+		return storeService;
+	}
 	private SimpleStoreService storeService;
 
-	{
-		books = new HashMap<String, Book>();
-		isbnGenerator = new CounterIsbnGenerator();
-		storeService = new SimpleStoreService();
-	}
 
 	public void setBooks(Map<String, Book> books){
 		this.books = books;
