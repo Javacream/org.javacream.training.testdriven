@@ -11,6 +11,7 @@ public class CounterIsbnGeneratorNextUnitTest {
 	
 	@Before public void init() {
 		counterIsbnGenerator = new CounterIsbnGenerator();
+		counterIsbnGenerator.setSuffix("-dk");
 	}
 	
 	@Test public void isbnIsGenerated() {
