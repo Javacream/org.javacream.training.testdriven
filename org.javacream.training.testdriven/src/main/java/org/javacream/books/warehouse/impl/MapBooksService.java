@@ -48,7 +48,7 @@ public class MapBooksService implements BooksService{
 //		book.setIsbn(isbnGenerator.nextIsbn());
 //		books.put(book.getIsbn(), book);
 
-		return book.getIsbn();
+		return  book.getIsbn();
 	}
 
 	/* (non-Javadoc)
