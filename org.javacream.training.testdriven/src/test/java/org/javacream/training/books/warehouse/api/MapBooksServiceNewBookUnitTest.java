@@ -13,12 +13,13 @@ import org.mockito.Mockito;
 public class MapBooksServiceNewBookUnitTest {
 
 	private MapBooksService booksService;
+	private CounterIsbnGenerator isbnGenerator;
 	private static final String ISBN = "ISBN42";
 	@Before public void init() {
 		booksService = new MapBooksService();
 		booksService.setBooks(new HashMap<String, Book>());
 
-		CounterIsbnGenerator isbnGenerator = Mockito.mock(CounterIsbnGenerator.class);
+		isbnGenerator = Mockito.mock(CounterIsbnGenerator.class);
 		Mockito.when(isbnGenerator.nextIsbn()).thenReturn(ISBN);
 		booksService.setIsbnGenerator(isbnGenerator);
 	}
@@ -26,6 +27,7 @@ public class MapBooksServiceNewBookUnitTest {
 	@Test public void anNonEmptyTitleCreatesIsbn() {
 		String isbn = booksService.newBook("NEW");
 		Assert.assertEquals(ISBN, isbn);
+		Mockito.verify(isbnGenerator).nextIsbn();
 	}
 
 	@Test(expected=IllegalArgumentException.class) public void nullTitleThrowsIllegalArgument() {
