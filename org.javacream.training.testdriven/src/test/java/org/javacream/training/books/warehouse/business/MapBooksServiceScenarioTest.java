@@ -1,24 +1,24 @@
 package org.javacream.training.books.warehouse.business;
 
+import org.javacream.ApplicationContext;
 import org.javacream.books.warehouse.api.Book;
 import org.javacream.books.warehouse.api.BooksService;
-import org.javacream.books.warehouse.impl.MapBooksService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 public class MapBooksServiceScenarioTest {
 
-	private BooksService mapBooksService;
+	private BooksService booksService;
 
 	@Before public void init() {
-		mapBooksService = new MapBooksService();
+		booksService = ApplicationContext.booksService();
 	}
 	@Test public void generatedBookIsFound() {
 		final String TITLE = "TESTDRIVEN";
-		String isbn = mapBooksService.newBook(TITLE);
+		String isbn = booksService.newBook(TITLE);
 		Assert.assertNotNull(isbn);
-		Book book = mapBooksService.findBookByIsbn(isbn);
+		Book book = booksService.findBookByIsbn(isbn);
 		Assert.assertEquals(TITLE, book.getTitle());
 	}
 }

@@ -1,28 +1,28 @@
 package org.javacream.training.books.warehouse.business;
 
+import org.javacream.ApplicationContext;
 import org.javacream.books.warehouse.api.BooksService;
-import org.javacream.books.warehouse.impl.MapBooksService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 public class MapBooksServiceNewBookIntegrationTest {
 
-	private BooksService mapBooksService;
+	private BooksService booksService;
 
 	@Before public void init() {
-		mapBooksService = new MapBooksService();
+		booksService = ApplicationContext.booksService();
 	}
 	
 	@Test public void anNonEmptyTitleCreatesIsbn() {
-		String isbn = mapBooksService.newBook("NEW");
+		String isbn = booksService.newBook("NEW");
 		Assert.assertNotNull(isbn);
 	}
 
 	@Test(expected=IllegalArgumentException.class) public void nullTitleThrowsIllegalArgument() {
-		mapBooksService.newBook(null);
+		booksService.newBook(null);
 	}
 	@Test(expected=IllegalArgumentException.class) public void emptyTitleThrowsIllegalArgument() {
-		mapBooksService.newBook("");
+		booksService.newBook("");
 	}
 }

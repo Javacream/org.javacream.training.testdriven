@@ -1,6 +1,5 @@
 package org.javacream.books.warehouse.impl;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.javacream.books.warehouse.api.Book;
