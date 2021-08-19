@@ -1,4 +1,4 @@
-package org.javacream.util.test;
+package org.javacream.training.util;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
