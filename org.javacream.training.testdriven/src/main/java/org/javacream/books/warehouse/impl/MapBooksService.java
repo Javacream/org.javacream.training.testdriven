@@ -10,7 +10,7 @@ import org.javacream.test.SpecifiedBy;
 
 public class MapBooksService implements BooksService{
 
-	private static Map<String, Book> books;
+	private Map<String, Book> books;
 
 	private CounterIsbnGenerator isbnGenerator;
 
@@ -22,8 +22,8 @@ public class MapBooksService implements BooksService{
 		storeService = new SimpleStoreService();
 	}
 
-	static void setBooks(Map<String, Book> books){
-		MapBooksService.books = books;
+	public void setBooks(Map<String, Book> books){
+		this.books = books;
 	}
 	
 	/* (non-Javadoc)
