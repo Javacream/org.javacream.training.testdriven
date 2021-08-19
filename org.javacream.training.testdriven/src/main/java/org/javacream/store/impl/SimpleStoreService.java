@@ -1,9 +1,11 @@
-package org.javacream.books.warehouse.impl;
+package org.javacream.store.impl;
 
 import java.util.HashMap;
 import java.util.Properties;
 
-public class SimpleStoreService {
+import org.javacream.store.api.StoreService;
+
+public class SimpleStoreService implements StoreService {
 
 	private HashMap<String, Properties> store;
 
@@ -12,6 +14,7 @@ public class SimpleStoreService {
 		store.put("books", PropertiesUtil.getProperties("books-store.properties"));
 	}
 
+	@Override
 	public int getStock(String category, String id) {
 		try {
 			return Integer.parseInt(store.get(category).get(id).toString());

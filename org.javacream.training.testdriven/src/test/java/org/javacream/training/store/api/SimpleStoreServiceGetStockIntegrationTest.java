@@ -1,33 +1,34 @@
-package org.javacream.training.books.warehouse.api;
+package org.javacream.training.store.api;
 
+import org.javacream.ApplicationContext;
+import org.javacream.store.api.StoreService;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.javacream.books.warehouse.impl.SimpleStoreService;
-import org.junit.Assert;
 
 public class SimpleStoreServiceGetStockIntegrationTest {
 
-	private SimpleStoreService simpleStoreService;
+	private StoreService storeService;
 
 	@Before public void init() {
-		simpleStoreService = new SimpleStoreService();
+		storeService = ApplicationContext.storeService();
 	}
 	@Test
 	public void categoryBookAndTestIsbnGetsStock45() {
 		final int EXPECTED_STOCK = 45;
-		int stock = simpleStoreService.getStock("books", "TEST-ISBN");
+		int stock = storeService.getStock("books", "TEST-ISBN");
 		Assert.assertEquals(EXPECTED_STOCK, stock);
 	}
 	@Test
 	public void unknownCategoryGetsStock0() {
 		final int EXPECTED_STOCK = 0;
-		int stock = simpleStoreService.getStock("%?zzz$%", "TEST-ISBN");
+		int stock = storeService.getStock("%?zzz$%", "TEST-ISBN");
 		Assert.assertEquals(EXPECTED_STOCK, stock);
 	}
 	@Test
 	public void unknownIsbnGetsStock0() {
 		final int EXPECTED_STOCK = 0;
-		int stock = simpleStoreService.getStock("books", "&%");
+		int stock = storeService.getStock("books", "&%");
 		Assert.assertEquals(EXPECTED_STOCK, stock);
 	}
 }

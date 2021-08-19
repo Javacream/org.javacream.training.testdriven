@@ -1,4 +1,4 @@
-package org.javacream.books.warehouse.impl;
+package org.javacream.store.impl;
 
 import java.io.IOException;
 import java.util.Properties;

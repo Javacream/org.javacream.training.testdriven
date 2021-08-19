@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.javacream.books.warehouse.api.Book;
 import org.javacream.books.warehouse.api.BooksService;
+import org.javacream.store.api.StoreService;
 import org.javacream.test.SpecifiedBy;
 
 
@@ -18,10 +19,10 @@ public class MapBooksService implements BooksService{
 		this.isbnGenerator = isbnGenerator;
 	}
 
-	public void setStoreService(SimpleStoreService storeService) {
+	public void setStoreService(StoreService storeService) {
 		this.storeService = storeService;
 	}
-	private SimpleStoreService storeService;
+	private StoreService storeService;
 
 
 	public void setBooks(Map<String, Book> books){
