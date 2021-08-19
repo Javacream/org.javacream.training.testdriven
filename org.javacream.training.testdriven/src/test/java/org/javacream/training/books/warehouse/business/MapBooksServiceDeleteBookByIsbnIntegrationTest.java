@@ -1,6 +1,6 @@
 package org.javacream.training.books.warehouse.business;
 
-import org.javacream.books.warehouse.business.MapBooksService;
+import org.javacream.books.warehouse.impl.MapBooksService;
 import org.javacream.test.SpecifiedBy;
 import org.junit.Before;
 import org.junit.Test;

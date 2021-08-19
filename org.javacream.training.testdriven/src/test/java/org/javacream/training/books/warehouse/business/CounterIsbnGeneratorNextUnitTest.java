@@ -1,6 +1,6 @@
 package org.javacream.training.books.warehouse.business;
 
-import org.javacream.books.warehouse.business.CounterIsbnGenerator;
+import org.javacream.books.warehouse.impl.CounterIsbnGenerator;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

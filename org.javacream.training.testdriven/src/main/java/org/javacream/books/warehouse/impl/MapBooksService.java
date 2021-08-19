@@ -1,9 +1,9 @@
-package org.javacream.books.warehouse.business;
+package org.javacream.books.warehouse.impl;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import org.javacream.books.warehouse.Book;
+import org.javacream.books.warehouse.api.Book;
 import org.javacream.test.SpecifiedBy;
 
 

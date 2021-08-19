@@ -1,9 +1,8 @@
 package org.javacream.training.books.warehouse.business;
 
-import org.javacream.books.warehouse.business.SimpleStoreService;
 import org.junit.Before;
 import org.junit.Test;
-
+import org.javacream.books.warehouse.impl.SimpleStoreService;
 import org.junit.Assert;
 
 public class SimpleStoreServiceGetStockIntegrationTest {

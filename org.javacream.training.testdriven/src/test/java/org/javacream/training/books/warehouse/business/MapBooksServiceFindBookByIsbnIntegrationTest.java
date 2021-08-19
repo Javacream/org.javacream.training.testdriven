@@ -1,7 +1,7 @@
 package org.javacream.training.books.warehouse.business;
 
-import org.javacream.books.warehouse.Book;
-import org.javacream.books.warehouse.business.MapBooksService;
+import org.javacream.books.warehouse.api.Book;
+import org.javacream.books.warehouse.impl.MapBooksService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

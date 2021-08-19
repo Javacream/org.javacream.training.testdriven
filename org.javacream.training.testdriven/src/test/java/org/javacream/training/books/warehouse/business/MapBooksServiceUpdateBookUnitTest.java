@@ -3,8 +3,8 @@ package org.javacream.training.books.warehouse.business;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.javacream.books.warehouse.Book;
-import org.javacream.books.warehouse.business.MapBooksService;
+import org.javacream.books.warehouse.api.Book;
+import org.javacream.books.warehouse.impl.MapBooksService;
 import org.javacream.test.SpecifiedBy;
 import org.junit.Assert;
 import org.junit.Before;
