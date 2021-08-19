@@ -20,7 +20,11 @@ public class ApplicationContext {
 		CounterIsbnGenerator counterIsbnGenerator = new CounterIsbnGenerator();
 		SimpleStoreService storeService = new SimpleStoreService();
 		
+		booksService.setBooks(books);
+		booksService.setIsbnGenerator(counterIsbnGenerator);
+		booksService.setStoreService(storeService);
 		
+		counterIsbnGenerator.setSuffix("-de");
 	}
 	
 	
