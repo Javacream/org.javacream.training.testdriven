@@ -6,8 +6,8 @@ import org.javacream.books.order.api.OrderService;
 import org.javacream.books.order.api.OrderStatus;
 import org.javacream.books.warehouse.api.Book;
 import org.javacream.books.warehouse.api.BooksService;
-import org.javacream.books.warehouse.api.StoreService;
 import org.javacream.customer.CustomerService;
+import org.javacream.store.api.StoreService;
 
 public class OrderServiceImpl implements OrderService {
 
