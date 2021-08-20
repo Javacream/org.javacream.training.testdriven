@@ -54,6 +54,9 @@ public class OrderServiceImpl implements OrderService {
 		try {
 			Book book = booksService.findBookByIsbn(isbn);
 			totalPrice = number * book.getPrice();
+			if (billingService.getLimitForCustomer(customerName) < totalPrice) {
+				throw new IllegalArgumentException("Limit exceeded");
+			}
 			int stock = storeService.getStock("books", isbn);
 			if (stock >= number) {
 				orderStatus = OrderStatus.OK;
