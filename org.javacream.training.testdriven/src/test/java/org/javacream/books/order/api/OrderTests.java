@@ -1,6 +1,12 @@
 package org.javacream.books.order.api;
 
-import static org.javacream.books.order.api.OrderTestData.*;
+import static org.javacream.books.order.api.OrderTestData.INSUFFICIENT_STOCK;
+import static org.javacream.books.order.api.OrderTestData.INVALID_CUSTOMER_NAME;
+import static org.javacream.books.order.api.OrderTestData.INVALID_ISBN;
+import static org.javacream.books.order.api.OrderTestData.SUFFICIENT_STOCK;
+import static org.javacream.books.order.api.OrderTestData.VALID_CUSTOMER_NAME_WITH_INVALID_LIMIT;
+import static org.javacream.books.order.api.OrderTestData.VALID_CUSTOMER_NAME_WITH_VALID_LIMIT;
+import static org.javacream.books.order.api.OrderTestData.VALID_ISBN;
 import static org.javacream.books.order.api.OrderTestData.billingServiceMock;
 import static org.javacream.books.order.api.OrderTestData.booksServiceMock;
 import static org.javacream.books.order.api.OrderTestData.customerServiceMock;
@@ -8,8 +14,6 @@ import static org.javacream.books.order.api.OrderTestData.storeServiceMock;
 
 import org.javacream.books.order.impl.OrderIdGenerator;
 import org.javacream.books.order.impl.OrderServiceImpl;
-import org.javacream.test.util.decorators.Decorator;
-import org.javacream.test.util.decorators.LogDecoratorCallback;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +28,7 @@ public class OrderTests {
 		orderService.setStoreService(storeServiceMock());
 		orderService.setBooksService(booksServiceMock());
 		
-		this.orderService = Decorator.decorate(orderService, new LogDecoratorCallback());
+		this.orderService = orderService;//Decorator.decorate(orderService, new LogDecoratorCallback());
 	}
 	
 	@Test public void validParamsCreateOrder(){
