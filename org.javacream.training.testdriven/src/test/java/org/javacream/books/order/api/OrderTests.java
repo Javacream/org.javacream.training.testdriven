@@ -8,6 +8,8 @@ import static org.javacream.books.order.api.OrderTestData.storeServiceMock;
 
 import org.javacream.books.order.impl.OrderIdGenerator;
 import org.javacream.books.order.impl.OrderServiceImpl;
+import org.javacream.test.util.decorators.Decorator;
+import org.javacream.test.util.decorators.LogDecoratorCallback;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +23,8 @@ public class OrderTests {
 		orderService.setBillingService(billingServiceMock());
 		orderService.setStoreService(storeServiceMock());
 		orderService.setBooksService(booksServiceMock());
-		this.orderService = orderService;
+		
+		this.orderService = Decorator.decorate(orderService, new LogDecoratorCallback());
 	}
 	
 	@Test public void validParamsCreateOrder(){

@@ -9,9 +9,10 @@ import org.javacream.books.warehouse.api.BooksService;
 import org.javacream.books.warehouse.impl.CounterIsbnGenerator;
 import org.javacream.books.warehouse.impl.MapBooksService;
 import org.javacream.store.api.StoreService;
-import org.javacream.store.decorator.StoreServiceLogDecorator;
 import org.javacream.store.impl.PropertiesUtil;
 import org.javacream.store.impl.SimpleStoreService;
+import org.javacream.test.util.decorators.Decorator;
+import org.javacream.test.util.decorators.LogDecoratorCallback;
 
 public class ApplicationContext {
 
@@ -41,12 +42,13 @@ public class ApplicationContext {
 		simpleStoreService .setCategories(categories);
 		simpleStoreService .init();
 		counterIsbnGenerator.setSuffix("-de");
-		
-		StoreServiceLogDecorator storeServiceLogDecorator = new StoreServiceLogDecorator();
-		storeServiceLogDecorator.setDelegate(simpleStoreService);
+
+		StoreService loggingStoreService = Decorator.decorate(simpleStoreService, new LogDecoratorCallback());
+//		StoreServiceLogDecorator storeServiceLogDecorator = new StoreServiceLogDecorator();
+//		storeServiceLogDecorator.setDelegate(simpleStoreService);
 		
 		booksService = mapBooksService;
-		storeService = storeServiceLogDecorator;
+		storeService = loggingStoreService;
 	}
 	
 }
