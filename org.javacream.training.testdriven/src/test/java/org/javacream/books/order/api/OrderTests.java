@@ -1,18 +1,59 @@
 package org.javacream.books.order.api;
 
-import org.javacream.test.util.GenericNotYetImplemented;
+import static org.javacream.books.order.api.OrderTestData.*;
+import static org.javacream.books.order.api.OrderTestData.billingServiceMock;
+import static org.javacream.books.order.api.OrderTestData.booksServiceMock;
+import static org.javacream.books.order.api.OrderTestData.customerServiceMock;
+import static org.javacream.books.order.api.OrderTestData.storeServiceMock;
+
+import org.javacream.books.order.impl.OrderIdGenerator;
+import org.javacream.books.order.impl.OrderServiceImpl;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 public class OrderTests {
-	private static final String VALID_CUSTOMER_NAME = "Hugo";
 	private OrderService orderService;
 	
 	@Before public void init() {
-		orderService = GenericNotYetImplemented.createNotYetImplemented(OrderService.class);
+		OrderServiceImpl orderService = new OrderServiceImpl();
+		orderService.setOrderIdGenerator(new OrderIdGenerator(0));
+		orderService.setCustomerService(customerServiceMock());
+		orderService.setBillingService(billingServiceMock());
+		orderService.setStoreService(storeServiceMock());
+		orderService.setBooksService(booksServiceMock());
+		this.orderService = orderService;
 	}
 	
 	@Test public void validParamsCreateOrder(){
-		String customerName = "";
+		Order result = orderService.order(VALID_ISBN, SUFFICIENT_STOCK, VALID_CUSTOMER_NAME_WITH_VALID_LIMIT);
+		Assert.assertEquals(OrderStatus.OK, result.getStatus());
 	}
+	@Test public void insufficientStockCreatesPendingOrder(){
+		Order result = orderService.order(VALID_ISBN, INSUFFICIENT_STOCK, VALID_CUSTOMER_NAME_WITH_VALID_LIMIT);
+		Assert.assertEquals(OrderStatus.PENDING, result.getStatus());
+	}
+	@Test public void invalidIsbnCreatesUnavailableOrder(){
+		Order result = orderService.order(INVALID_ISBN, SUFFICIENT_STOCK, VALID_CUSTOMER_NAME_WITH_VALID_LIMIT);
+		Assert.assertEquals(OrderStatus.UNAVAILABLE, result.getStatus());
+	}
+	@Test (expected=IllegalArgumentException.class) public void unknownCustomerThrowsException(){
+		orderService.order(VALID_ISBN, SUFFICIENT_STOCK, INVALID_CUSTOMER_NAME);
+	}
+	@Test (expected=IllegalArgumentException.class) public void exceededLimitThrowsException(){
+		orderService.order(VALID_ISBN, SUFFICIENT_STOCK, VALID_CUSTOMER_NAME_WITH_INVALID_LIMIT);
+	}
+
+	@Test (expected=IllegalArgumentException.class) public void nullIsbnThrowsException(){
+		orderService.order(null, SUFFICIENT_STOCK, VALID_CUSTOMER_NAME_WITH_VALID_LIMIT);
+	}
+	@Test (expected=IllegalArgumentException.class) public void nullNumberThrowsException(){
+		orderService.order(VALID_ISBN, 0, VALID_CUSTOMER_NAME_WITH_VALID_LIMIT);
+	}
+	@Test (expected=IllegalArgumentException.class) public void nullCustomerThrowsException(){
+		orderService.order(VALID_ISBN, SUFFICIENT_STOCK, null);
+	}
+	@Test (expected=IllegalArgumentException.class) public void invalidCustomerThrowsException(){
+		orderService.order(VALID_ISBN, SUFFICIENT_STOCK, INVALID_CUSTOMER_NAME);
+	}
+
 }

@@ -21,7 +21,7 @@ public class OrderServiceImpl implements OrderService {
 		this.customerService = customerService;
 	}
 
-	public void setInvoiceService(BillingService billingService) {
+	public void setBillingService(BillingService billingService) {
 		this.billingService = billingService;
 	}
 
