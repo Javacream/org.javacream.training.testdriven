@@ -49,7 +49,8 @@ public class OrderServiceImpl implements OrderService {
 			throw new IllegalArgumentException("illegal amount, was " + number);
 		}
 		long orderId = orderIdGenerator.nextId();
-		Double totalPrice = null;
+		//BUG von 10:28
+		double totalPrice = 0;
 		OrderStatus orderStatus;
 		try {
 			Book book = booksService.findBookByIsbn(isbn);
