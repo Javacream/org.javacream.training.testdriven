@@ -1,4 +1,4 @@
-package org.javacream.training.books.warehouse.impl;
+package org.javacream.books.warehouse.impl;
 
 import org.javacream.books.warehouse.impl.CounterIsbnGenerator;
 import org.junit.Assert;

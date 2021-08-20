@@ -1,4 +1,4 @@
-package org.javacream.training.books.warehouse.api.unit;
+package org.javacream.books.warehouse.api.unit;
 
 import java.util.HashMap;
 

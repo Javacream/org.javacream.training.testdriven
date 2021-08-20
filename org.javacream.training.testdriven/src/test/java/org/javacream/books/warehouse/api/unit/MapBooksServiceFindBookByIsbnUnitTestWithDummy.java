@@ -1,15 +1,16 @@
-package org.javacream.training.books.warehouse.api.unit;
+package org.javacream.books.warehouse.api.unit;
 
 import java.util.HashMap;
 
 import org.javacream.books.warehouse.api.Book;
 import org.javacream.books.warehouse.impl.MapBooksService;
 import org.javacream.store.api.StoreService;
+import org.javacream.test.util.GenericDummy;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class MapBooksServiceFindBookByIsbnUnitTestWithStub {
+public class MapBooksServiceFindBookByIsbnUnitTestWithDummy {
 
 	private MapBooksService booksService;
 	private String VALID_ISBN = "";
@@ -22,7 +23,8 @@ public class MapBooksServiceFindBookByIsbnUnitTestWithStub {
 		testBook.setIsbn(VALID_ISBN);
 		testBook.setTitle(TITLE);
 		testData.put(VALID_ISBN, testBook);
-		booksService.setStoreService(new TestStoreService());
+		StoreService dummy = GenericDummy.createDummy(StoreService.class);
+		booksService.setStoreService(dummy);
 		booksService.setBooks(testData);
 	}
 	
@@ -44,14 +46,7 @@ public class MapBooksServiceFindBookByIsbnUnitTestWithStub {
 		booksService.findBookByIsbn(INVALID_ISBN);
 	}
 
-	class TestStoreService implements StoreService{
 
-		@Override
-		public int getStock(String category, String id) {
-			return 42;
-		}
-		
-	}
 }
 
 

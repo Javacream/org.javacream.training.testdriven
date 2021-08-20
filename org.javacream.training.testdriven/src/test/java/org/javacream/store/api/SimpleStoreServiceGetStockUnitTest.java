@@ -1,4 +1,4 @@
-package org.javacream.training.store.api;
+package org.javacream.store.api;
 
 import java.util.ArrayList;
 import java.util.Properties;
